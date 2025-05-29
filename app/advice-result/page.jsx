@@ -1,10 +1,10 @@
 "use client";
 
-import React, { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import LanguageToggle from "../components/LanguageToggle";
 
-function AdviceResultContent() {
+export default function AdviceResult() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const [language, setLanguage] = useState("en");
@@ -66,6 +66,7 @@ function AdviceResultContent() {
     },
   };
 
+  // Safe access to advice data with fallbacks
   const getAdviceData = () => {
     if (!advice) return {};
 
@@ -226,28 +227,11 @@ function AdviceResultContent() {
             </div>
           ) : (
             <div className="text-center py-10 text-gray-500">
-              <p>No advice data found. Please check your query parameters.</p>
+              <p>No advice data found. / Koi mashwara nahi mila.</p>
             </div>
           )}
         </div>
       </div>
     </div>
-  );
-}
-
-export default function AdviceResult() {
-  return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-gradient-to-b from-green-50 to-white flex items-center justify-center">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-green-600 mx-auto mb-4"></div>
-            <p>Loading advice...</p>
-          </div>
-        </div>
-      }
-    >
-      <AdviceResultContent />
-    </Suspense>
   );
 }
