@@ -1,102 +1,204 @@
-import Image from "next/image";
+"use client";
+import { motion } from "framer-motion";
+import { FiArrowRight, FiGithub, FiGlobe } from "react-icons/fi";
+import TechBubble from "./components/TechBubble";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const techStack = [
+    { name: "Next.js 15", color: "bg-black text-white" },
+    { name: "React", color: "bg-blue-600 text-white" },
+    { name: "MongoDB", color: "bg-green-600 text-white" },
+    { name: "Tailwind CSS", color: "bg-cyan-400 text-black" },
+    { name: "Hugging Face AI", color: "bg-yellow-400 text-black" },
+    { name: "Framer Motion", color: "bg-purple-600 text-white" },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
+      {/* Animated Background Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        {[...Array(10)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute rounded-full bg-green-100 opacity-20"
+            initial={{
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              scale: Math.random() * 2,
+            }}
+            animate={{
+              x: Math.random() * 100,
+              y: Math.random() * 100,
+              transition: {
+                duration: 20 + Math.random() * 20,
+                repeat: Infinity,
+                repeatType: "reverse",
+              },
+            }}
+            style={{
+              width: `${100 + Math.random() * 200}px`,
+              height: `${100 + Math.random() * 200}px`,
+            }}
+          />
+        ))}
+      </div>
+
+      <header className="relative z-10">
+        <nav className="container mx-auto px-6 py-4 flex justify-between items-center">
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex items-center space-x-2"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            <span className="text-2xl font-bold bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent">
+              QurbaniCare
+            </span>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
           >
-            Read our docs
-          </a>
-        </div>
+            <a
+              href="/advice-form"
+              className="flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-green-400 text-white font-medium shadow-lg hover:shadow-xl transition-all"
+            >
+              Get Started <FiArrowRight className="ml-2" />
+            </a>
+          </motion.div>
+        </nav>
+      </header>
+
+      <main className="relative z-10 container mx-auto px-6 py-12">
+        {/* Hero Section */}
+        <section className="text-center mb-20">
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-green-600 to-green-400 bg-clip-text text-transparent"
+          >
+            Smart Care for <br />
+            Sacrificial Animals
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-xl text-gray-600 max-w-3xl mx-auto mb-10"
+          >
+            AI-powered guidance to ensure your Qurbani animals are healthy and
+            well-cared for according to Islamic principles.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex flex-col sm:flex-row justify-center gap-4"
+          >
+            <a
+              href="/advice-form"
+              className="px-8 py-4 rounded-full bg-gradient-to-r from-green-500 to-green-400 text-white font-bold text-lg shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+            >
+              Get Personalized Advice
+            </a>
+            <a
+              href="#tech"
+              className="px-8 py-4 rounded-full bg-white text-green-600 font-bold text-lg border-2 border-green-400 shadow-lg hover:shadow-xl transition-all flex items-center justify-center"
+            >
+              Our Technology
+            </a>
+          </motion.div>
+        </section>
+
+        {/* Features Grid */}
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+          {[
+            {
+              icon: "🩺",
+              title: "Health Monitoring",
+              desc: "AI-powered health assessments for your animals",
+            },
+            {
+              icon: "📜",
+              title: "Islamic Guidelines",
+              desc: "Shariah-compliant care recommendations",
+            },
+            {
+              icon: "🌿",
+              title: "Feeding Plans",
+              desc: "Personalized diet recommendations",
+            },
+          ].map((feature, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 * i }}
+              whileHover={{ y: -5 }}
+              className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:border-green-200 transition-all"
+            >
+              <div className="text-4xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">{feature.desc}</p>
+            </motion.div>
+          ))}
+        </section>
+
+        {/* Tech Stack Section */}
+        <section id="tech" className="mb-20">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-3xl font-bold text-center mb-12 text-gray-800"
+          >
+            Our Powerful Technology Stack
+          </motion.h2>
+          <div className="flex flex-wrap justify-center gap-4">
+            {techStack.map((tech, i) => (
+              <TechBubble key={i} tech={tech} index={i} />
+            ))}
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="bg-gradient-to-r from-green-500 to-green-400 rounded-3xl p-8 md:p-12 text-white text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-2xl md:text-3xl font-bold mb-4">
+              Ready to Ensure Proper Care for Your Animal?
+            </h2>
+            <p className="text-lg mb-8 max-w-2xl mx-auto">
+              Get personalized, AI-powered advice in seconds - available in both
+              English and Urdu.
+            </p>
+            <a
+              href="/advice-form"
+              className="inline-block px-8 py-4 bg-white text-green-600 font-bold rounded-full shadow-xl hover:bg-gray-100 transition-all"
+            >
+              Start Now - It's Free
+            </a>
+          </motion.div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="relative z-10 bg-white py-8 border-t border-gray-200">
+        <div className="container mx-auto px-6 text-center text-gray-600">
+          <p>© {new Date().getFullYear()} QurbaniCare - All rights reserved</p>
+          <div className="flex justify-center space-x-4 mt-4">
+            <a href="#" className="hover:text-green-500 transition-colors">
+              <FiGithub className="w-5 h-5" />
+            </a>
+            <a href="#" className="hover:text-green-500 transition-colors">
+              <FiGlobe className="w-5 h-5" />
+            </a>
+          </div>
+        </div>
       </footer>
     </div>
   );
